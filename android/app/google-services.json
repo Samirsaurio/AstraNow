@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1086541251007",
+    "firebase_url": "https://astra-fc4a3-default-rtdb.firebaseio.com",
+    "project_id": "astra-fc4a3",
+    "storage_bucket": "astra-fc4a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086541251007:android:02c36e2fbd87dc6d9c610a",
+        "android_client_info": {
+          "package_name": "com.example.astranow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086541251007-9qalaqqqeer06ab2kctp7r5c9p1n9tee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUtJrMVJtxA_is1Chblg_rnb26xt9sxwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086541251007-9qalaqqqeer06ab2kctp7r5c9p1n9tee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
