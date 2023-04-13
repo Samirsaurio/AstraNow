@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:astranow/auth.dart';
 
 class LoginPage extends StatefulWidget {
+
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -10,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   String? errorMessage = '';
   bool isLogin = true;
 
@@ -70,22 +72,41 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: size.height * 0.06,
                   ),
-                  _entryField('email', _controllerEmail),
-                  _entryField('password', _controllerPassword),
+                  _entryField('email', _controllerEmail, size),
+                  _entryField('password', _controllerPassword, size),
+
+                  _submitButton(size),
                   _errorMessage(),
-                  _submitButton(),
                   _loginOrRegisterButton(),
                 ]),
               ],
             )));
   }
 
-  Widget _entryField(String title, TextEditingController controller){ //generado
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: title,
+  Widget _entryField(String title, TextEditingController controller, Size size){ //generado
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5.0),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+      width: size.width * 0.8,
+      height: 50.0,
+      decoration: BoxDecoration(
+        color: Color(int.parse('#055681'.replaceAll('#', '0xff'))),
+        borderRadius: BorderRadius.circular(19,)
       ),
+      child: TextField(
+        obscureText: title == 'password' ? true : false,
+        controller: controller,
+        decoration: InputDecoration(
+          hintStyle: TextStyle(fontSize: 15.0, color: Colors.white),
+          hintText: title == 'password' ? 'Contraseña' : 'Usuario',
+          icon: Icon(
+            title == 'password' ? Icons.lock : Icons.person,
+            color: Colors.blue,
+          ),
+          border: InputBorder.none,
+        ),
+    ),
     );
   }
 
@@ -93,9 +114,21 @@ class _LoginPageState extends State<LoginPage> {
     return Text(errorMessage == ''? '': 'Humm ? $errorMessage');
   }
 
-  Widget _submitButton(){ //generado
-    return ElevatedButton(onPressed: isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
-    child: Text(isLogin ? 'Login' : 'Register',));
+  Widget _submitButton(Size size){ //generado
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5.0),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+      width: size.width * 0.8,
+      height: 50.0,
+      decoration: BoxDecoration(
+        color: Color(int.parse('#2C296C'.replaceAll('#', '0xff'))),
+        borderRadius: BorderRadius.circular(19,)
+      ),
+      child: ElevatedButton(
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Color(int.parse('#2C296C'.replaceAll('#', '0xff'))))),
+        onPressed: isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
+
+    child: Text(isLogin ? 'Login' : 'Register',)));
   }
 
   Widget _loginOrRegisterButton(){

@@ -1,4 +1,5 @@
 import 'package:astranow/src/pages/home_page.dart';
+import 'package:astranow/src/pages/incidents_page.dart';
 import 'package:astranow/src/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -40,17 +41,5 @@ class MyApp extends StatelessWidget {
       home: WidgetTree(),
     );
 
-    /*
-    return StreamBuilder(
-      stream: Auth().authStateChanges,
-      builder: (context, snapshot){
-        if(snapshot.hasData){
-          return HomePage();
-        }
-        else {
-          return LoginPage();
-        }
-      }
-    );*/
   }
 }

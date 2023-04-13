@@ -1,4 +1,6 @@
 import 'package:astranow/auth.dart';
+import 'package:astranow/src/models/service_model.dart';
+import 'package:astranow/src/providers/service_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Servicio> _srvs = [];
 
   final User? user = Auth().currentUser; //BORRAME SI FALLA
 
@@ -36,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          child: Text('Categorias',
+          child: Text('Servicios',
             style: TextStyle(
               color: Color(int.parse('#BCE8FF'.replaceAll('#', '0xff'))),
               fontSize: 40,
@@ -45,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           margin: EdgeInsets.only(left: 20.0),
         ),
         Expanded(
-          child: _ListCategories(),
+          child: _listTempCategories(),
         ),
         _signOutButton(),
 
@@ -53,14 +56,50 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _ListCategories(){
+  Widget _listTempCategories() {
+    String _colorsito = '4ABC2D';
+    return FutureBuilder(
+      future: ServicioProvider().getServicios().then((srvs) => _srvs = srvs),
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        if (snapshot.hasData) {
+          print('Se pudo por ahora' + _srvs.toString());
+          return ListView.builder(
+            itemCount: null == _srvs ? 0 : _srvs.length,
+            itemBuilder: (context, index) {
+              Servicio servicio = _srvs[index];
+              print('Si se pudo');
+              if(servicio.current_system_status == 'green')
+              {
+                _colorsito = '4ABC2D';
+              }
+              else if(servicio.current_system_status == 'yellow')
+              {
+                _colorsito = 'BCB72D';
+              }
+              else{
+                _colorsito = 'FF8C6F';
+              }
+              return _cardTile(servicio.name, servicio.group, _colorsito);
+            },
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
+      initialData: [],
+    );
+  }
+
+
+
+  /*Widget _ListCategories(){
     return ListView(
       children: [
         _cardTile('HHRR', 'Sldhdhdd'),
         _cardTile('HHRR', 'Sldhdhdd'),
       ],
     );
-  }
+  }*/
 
   Widget _signOutButton(){
     return ElevatedButton(child: Text('Sign out'), onPressed: signOut,);
@@ -69,7 +108,7 @@ class _HomePageState extends State<HomePage> {
 
 
 
- Widget _cardTile(String _serviceName, String _serviceDesc) //La tarjeta sin la imagen y su información
+ Widget _cardTile(String _serviceName, String _serviceDesc, String _color) //La tarjeta sin la imagen y su información
   {
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -86,7 +125,8 @@ class _HomePageState extends State<HomePage> {
           leading: Icon(Icons.supervised_user_circle, size: 50,color: Color(int.parse('#669ac5'.replaceAll('#', '0xff'))),),
           title: Text(_serviceName, style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold, color: Color(int.parse('#80bed9'.replaceAll('#', '0xff')))),),
           subtitle: Text(_serviceDesc, style: TextStyle(fontSize: 10.0, color: Color(int.parse('#80bed9'.replaceAll('#', '0xff'))))),
-          trailing: Icon(Icons.arrow_forward_ios, color: Color(int.parse('#6299c5'.replaceAll('#', '0xff'))),),
+          //trailing: Icon(Icons.arrow_forward_ios, color: Color(int.parse('#6299c5'.replaceAll('#', '0xff'))),),
+          trailing: Icon(Icons.circle, color: Color(int.parse('#${_color}'.replaceAll('#', '0xff'))))
         ),
       ),
     );
