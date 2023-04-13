@@ -28,14 +28,14 @@ class _IncidentsPageState extends State<IncidentsPage> {
     return Scaffold(
       //appBar: AppBar(title: const Text('Incidencias pasadas')),
       body: _body(),
-      backgroundColor: Color(int.parse('#09274D'.replaceAll('#', '0xff'))),
+      backgroundColor: Colors.white,
     );
   }
 
   Widget _body() {
     return Container(
       margin: EdgeInsets.only(left: 25.0),
-      child: _listTempCategories(),
+      child: _ListCategories(),
     );
   }
 
@@ -55,14 +55,14 @@ class _IncidentsPageState extends State<IncidentsPage> {
       title: Text(
         _date,
         style: TextStyle(
-            color: Color(int.parse('#A8ECFF'.replaceAll('#', '0xff'))),
+            color: Colors.black,
             fontSize: 25,
             fontWeight: FontWeight.bold,
             fontFamily: 'Inter'),
       ),
       subtitle: Text(_incidentDesc,
           style: TextStyle(
-              color: Color(int.parse('#A8ECFF'.replaceAll('#', '0xff'))),
+              color: Colors.black,
               fontSize: 18,
               fontFamily: 'Inter')),
       contentPadding: EdgeInsets.symmetric(vertical: 8.0),
