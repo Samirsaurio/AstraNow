@@ -1,6 +1,7 @@
 import 'package:astranow/auth.dart';
 import 'package:astranow/src/pages/home_page.dart';
 import 'package:astranow/src/pages/login_page.dart';
+import 'package:astranow/src/pages/mainbar_page.dart';
 import 'package:flutter/material.dart';
 
 class WidgetTree extends StatefulWidget {
@@ -17,7 +18,7 @@ class _WidgetTreeState extends State<WidgetTree> {
       stream: Auth().authStateChanges,
       builder: (context, snapshot){
         if(snapshot.hasData){
-          return HomePage();
+          return MainBarPage();
         }
         else {
           return LoginPage();

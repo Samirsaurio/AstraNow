@@ -25,9 +25,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hola amigos')),
+      //appBar: AppBar(title: Text('Hola amigos')),
       body: _body(),
-      backgroundColor: Color(int.parse('#09274D'.replaceAll('#', '0xff'))),
+      backgroundColor: Color(int.parse('#FFFFFF'.replaceAll('#', '0xff'))), //09274D
 
     );
   }
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         Container(
           child: Text('Servicios',
             style: TextStyle(
-              color: Color(int.parse('#BCE8FF'.replaceAll('#', '0xff'))),
+              color: Color(int.parse('#26282b'.replaceAll('#', '0xff'))), //BCE8FF
               fontSize: 40,
               fontFamily: 'Inter'),
           ),
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           child: _listTempCategories(),
         ),
-        _signOutButton(),
+        //_signOutButton(), //boton de signup
 
       ],
     );
@@ -118,13 +118,13 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         height: 80, //altura
         alignment: Alignment.centerRight, //para centrar los elementos
-        color: Color(int.parse('#055681'.replaceAll('#', '0xff'))), //backgroundcolor card
+        color: Color(int.parse('#FAFAFA'.replaceAll('#', '0xff'))), //backgroundcolor card
         child: ListTile(
           //visualDensity: VisualDensity(horizontal: 0, vertical: -4),
           contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 0.0), //Padding
           leading: Icon(Icons.supervised_user_circle, size: 50,color: Color(int.parse('#669ac5'.replaceAll('#', '0xff'))),),
-          title: Text(_serviceName, style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold, color: Color(int.parse('#80bed9'.replaceAll('#', '0xff')))),),
-          subtitle: Text(_serviceDesc, style: TextStyle(fontSize: 10.0, color: Color(int.parse('#80bed9'.replaceAll('#', '0xff'))))),
+          title: Text(_serviceName, style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold, color: Color(int.parse('#26282b'.replaceAll('#', '0xff')))),),
+          subtitle: Text(_serviceDesc, style: TextStyle(fontSize: 10.0, color: Color(int.parse('#26282b'.replaceAll('#', '0xff'))))),
           //trailing: Icon(Icons.arrow_forward_ios, color: Color(int.parse('#6299c5'.replaceAll('#', '0xff'))),),
           trailing: Icon(Icons.circle, color: Color(int.parse('#${_color}'.replaceAll('#', '0xff'))))
         ),

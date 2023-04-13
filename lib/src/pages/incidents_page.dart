@@ -1,4 +1,6 @@
+import 'package:astranow/src/models/incident_model.dart';
 import 'package:astranow/src/models/service_model.dart';
+import 'package:astranow/src/providers/incident_provider.dart';
 import 'package:astranow/src/providers/service_provider.dart';
 import 'package:flutter/material.dart';
 // ignore: library_prefixes
@@ -13,7 +15,7 @@ class IncidentsPage extends StatefulWidget {
 }
 
 class _IncidentsPageState extends State<IncidentsPage> {
-  List<Servicio> _srvs = [];
+  List<Incidencia> _srvs = [];
   //IO.Socket socket = IO.io('http://10.0.2.2:3001');
 
   @override
@@ -24,7 +26,7 @@ class _IncidentsPageState extends State<IncidentsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Incidencias pasadas')),
+      //appBar: AppBar(title: const Text('Incidencias pasadas')),
       body: _body(),
       backgroundColor: Color(int.parse('#09274D'.replaceAll('#', '0xff'))),
     );
@@ -69,16 +71,16 @@ class _IncidentsPageState extends State<IncidentsPage> {
 
   Widget _listTempCategories() {
     return FutureBuilder(
-      future: ServicioProvider().getServicios().then((srvs) => _srvs = srvs),
+      future: IncidenciaProvider().getIncidencias().then((srvs) => _srvs = srvs),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.hasData) {
           print('Se pudo por ahora' + _srvs.toString());
           return ListView.builder(
             itemCount: null == _srvs ? 0 : _srvs.length,
             itemBuilder: (context, index) {
-              Servicio servicio = _srvs[index];
+              Incidencia incidencia = _srvs[index];
               print('Si se pudo');
-              return ListTile(title: Text(servicio.name));
+              return ListTile(title: Text(incidencia.date));
             },
           );
         } else {
